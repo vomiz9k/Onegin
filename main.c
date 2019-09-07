@@ -165,7 +165,7 @@ int compstrings(char* str1, char* str2)
         if (c1 == c2 && c2 == '\0')
             return 0;
         ++i; ++j;
-        } while((str1[i] != '\0', str2[j] != '\0'));
+    } while((str1[i] != '\0', str2[j] != '\0'));
     return 0;
 }
 
