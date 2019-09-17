@@ -1,18 +1,11 @@
 #include "stringsort.h"
 void unit_test()
 {
-    char c;
-    printf("Make UNIT TESTS? (Y/N): ");
-    c = getchar();
-    printf("\n");
-    if (c == 'Y' || c == 'y')
-    {
-        test_comp_strings_start();
-        test_comp_strings_end();
-        test_is_letter();
-        test_my_qsort();
-        printf("\nUNIT_TEST FINISHED SUCCESSFULL\n\n---------------------\n\n");
-    }
+    test_comp_strings_start();
+    test_comp_strings_end();
+    test_is_letter();
+    test_my_qsort();
+    printf ("\nUNIT_TEST FINISHED SUCCESSFULL\n\n---------------------\n\n");
 }
 
 
@@ -35,9 +28,9 @@ void test_comp_strings_start_1()
     index2.start = a + 5;
     index2.ending = a + 8;
 
-    assert(comp_strings_start((void*)&index1, (void*)&index2) == 'a'-'c');
-    assert(comp_strings_start((void*)&index2, (void*)&index1) == 'c'-'a');
-    assert(comp_strings_start((void*)&index1, (void*)&index1) == 0);
+    assert(comp_strings_start((void*) &index1, (void*) &index2) == 'a'-'c');
+    assert(comp_strings_start((void*) &index2, (void*) &index1) == 'c'-'a');
+    assert(comp_strings_start((void*) &index1, (void*) &index1) == 0);
 }
 
 void test_comp_strings_start_2()
@@ -51,9 +44,9 @@ void test_comp_strings_start_2()
     index2.start = a + 5;
     index2.ending = a + 9;
 
-    assert(comp_strings_start((void*)&index1, (void*)&index2) == '\0' - 'd');
-    assert(comp_strings_start((void*)&index2, (void*)&index1) == 'd' - '\0');
-    assert(comp_strings_start((void*)&index1, (void*)&index1) == 0);
+    assert(comp_strings_start((void*) &index1, (void*) &index2) == '\0' - 'd');
+    assert(comp_strings_start((void*) &index2, (void*) &index1) == 'd' - '\0');
+    assert(comp_strings_start((void*) &index1, (void*) &index1) == 0);
 }
 
 void test_comp_strings_start_3()
@@ -67,9 +60,9 @@ void test_comp_strings_start_3()
     index2.start = a + 3;
     index2.ending = a + 4;
 
-    assert(comp_strings_start((void*)&index1, (void*)&index2) == 'a');
-    assert(comp_strings_start((void*)&index2, (void*)&index1) == -'a');
-    assert(comp_strings_start((void*)&index2, (void*)&index2) == 0);
+    assert(comp_strings_start((void*) &index1, (void*) &index2) == 'a');
+    assert(comp_strings_start((void*) &index2, (void*) &index1) == -'a');
+    assert(comp_strings_start((void*) &index2, (void*) &index2) == 0);
 }
 
 
@@ -92,9 +85,9 @@ void test_comp_strings_end_1()
     index2.start = a + 5;
     index2.ending = a + 9;
 
-    assert(comp_strings_end((void*)&index1, (void*)&index2) == 'c' - 'd');
-    assert(comp_strings_end((void*)&index2, (void*)&index1) == 'd' - 'c');
-    assert(comp_strings_end((void*)&index2, (void*)&index2) == 0);
+    assert(comp_strings_end((void*) &index1, (void*) &index2) == 'c' - 'd');
+    assert(comp_strings_end((void*) &index2, (void*) &index1) == 'd' - 'c');
+    assert(comp_strings_end((void*) &index2, (void*) &index2) == 0);
 }
 
 void test_comp_strings_end_2()
@@ -108,9 +101,9 @@ void test_comp_strings_end_2()
     index2.start = a + 6;
     index2.ending = a + 9;
 
-    assert(comp_strings_end((void*)&index1, (void*)&index2) == 'o');
-    assert(comp_strings_end((void*)&index2, (void*)&index1) == -'o');
-    assert(comp_strings_end((void*)&index2, (void*)&index2) == 0);
+    assert(comp_strings_end((void*) &index1, (void*) &index2) == 'o');
+    assert(comp_strings_end((void*) &index2, (void*) &index1) == -'o');
+    assert(comp_strings_end((void*) &index2, (void*) &index2) == 0);
 }
 
 void test_comp_strings_end_3()
@@ -124,9 +117,9 @@ void test_comp_strings_end_3()
     index2.start = a + 3;
     index2.ending = a + 4;
 
-    assert(comp_strings_end((void*)&index1, (void*)&index2) == 'a');
-    assert(comp_strings_end((void*)&index2, (void*)&index1) == -'a');
-    assert(comp_strings_end((void*)&index2, (void*)&index2) == 0);
+    assert(comp_strings_end((void*) &index1, (void*) &index2) == 'a');
+    assert(comp_strings_end((void*) &index2, (void*) &index1) == -'a');
+    assert(comp_strings_end((void*) &index2, (void*) &index2) == 0);
 }
 
 
