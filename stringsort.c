@@ -9,7 +9,7 @@ char* ending;
 /*!Function gets files names.
 @param [in] fin_name - input file name variable.
 @param [in] fout_name - output file name variable*/
-void get_file_names (char* fin_name, char* fout_name)
+void get_file_names(char* fin_name, char* fout_name)
 {
     printf ("Input filename: ");
     scanf ("%s", fin_name);
@@ -20,13 +20,13 @@ void get_file_names (char* fin_name, char* fout_name)
 
 /*!This function returns count of characters in input file.
 @param [in] fin - input file.*/
-int file_size (FILE * fin)
+int file_size(FILE * fin)
 {
     int needspace = 0;
-    fseek (fin, 0, 2);
-    needspace = ftell (fin);
+    fseek(fin, 0, 2);
+    needspace = ftell(fin);
     assert (needspace > 0);
-    fseek (fin, 0, 0);
+    fseek(fin, 0, 0);
     return needspace;
 }
 
@@ -35,14 +35,14 @@ int file_size (FILE * fin)
 @param [in] size_of_file - size of file in bytes.*/
 int file_read(FILE * fin, int *size_of_file)
 {
-    char* file_pointer = (char*) calloc (*size_of_file+1, sizeof(char));;
+    char* file_pointer = (char*) calloc(*size_of_file+1, sizeof(char));;
     assert (file_pointer != nullptr);
 
-    int symbols = fread (file_pointer, sizeof(char), *size_of_file, fin);
+    int symbols = fread(file_pointer, sizeof(char), *size_of_file, fin);
     file_pointer[symbols] = 0;
     *size_of_file = symbols;
 
-    return (int)file_pointer;
+    return (int) file_pointer;
 }
 
 /*!This function returns count of strings in onegin.
@@ -90,15 +90,15 @@ void get_str_index(char* onegin, indexes* index, int string_count, int size_of_f
 @param [in] spam_size - size of spam we need to put between texts.*/
 void print_all_to(FILE * fout, indexes* index, int string_count, char* onegin, int spam_size)
 {
-    my_qsort (index, string_count, sizeof(indexes), comp_strings_end);
+    my_qsort(index, string_count, sizeof(indexes), comp_strings_end);
     print (index, string_count, fout);
 
-    spam (fout, spam_size);
+    spam(fout, spam_size);
 
-    my_qsort (index, string_count, sizeof(indexes), comp_strings_start);
+    my_qsort(index, string_count, sizeof(indexes), comp_strings_start);
     print (index, string_count, fout);
 
-    spam (fout, spam_size);
+    spam(fout, spam_size);
 
     fprintf (fout, "%s", onegin);
 }
@@ -115,23 +115,23 @@ void my_qsort(void* arr, int cnt, int el_size, int (*comp)(const void* a, const 
         return;
     if (cnt == 2)
     {
-        swap (arr, (arr+el_size), el_size);
+        swap(arr, (arr + el_size), el_size);
         return;
     }
-    swap ((arr+el_size*(cnt/2)), arr, el_size);
+    swap ((arr + el_size * (cnt / 2)), arr, el_size);
     for (i = 1; i < cnt; ++i)
     {
-            if (comp (arr, (arr+i*el_size)) > 0)
+            if (comp(arr, (arr+i * el_size)) > 0)
             {
                 ++j;
-                swap ((arr+i*el_size), (arr+el_size*j), el_size);
+                swap((arr + i * el_size), (arr + el_size * j), el_size);
 
             }
 
         }
-    swap (arr, (arr+j*el_size), el_size);
-    my_qsort (arr, j, el_size, comp);
-    my_qsort (arr+el_size*(j+1), cnt-j-1, el_size, comp);
+    swap(arr, (arr+ j * el_size), el_size);
+    my_qsort(arr, j, el_size, comp);
+    my_qsort(arr + el_size * (j + 1), cnt - j - 1, el_size, comp);
 }
 
 /*!This function compares two strings by first letters.
@@ -147,20 +147,20 @@ int comp_strings_start(const void* str1_pointer, const void* str2_pointer)
 
     do
     {
-        while (is_letter (*(index1.start + i)) < 0 && i < size1)
+        while (is_letter(*(index1.start + i)) < 0 && i < size1)
             ++i;
-        while (is_letter (*(index2.start + j)) < 0 && j < size2)
+        while (is_letter(*(index2.start + j)) < 0 && j < size2)
             ++j;
 
-        c1 = is_letter (*(index1.start+i));
-        c2 = is_letter (*(index2.start+j));
+        c1 = is_letter(*(index1.start + i));
+        c2 = is_letter(*(index2.start + j));
 
         if ((c1 == '\0' || c2 == '\0' || c1 != c2))
             return c1 - c2;
 
         ++i; ++j;
 
-    } while(i < size1 || j < size2);
+    } while (i < size1 || j < size2);
     return c1 - c2;
 }
 
@@ -178,14 +178,14 @@ int comp_strings_end(const void* str1_pointer, const void* str2_pointer)
     {
         ++i; ++j;
 
-        while (is_letter (*(index1.ending-i)) < 0 && i < size1)
+        while (is_letter(*(index1.ending - i)) < 0 && i < size1)
             ++i;
 
-        while (is_letter (*(index2.ending-j)) < 0 && j < size2)
+        while (is_letter(*(index2.ending - j)) < 0 && j < size2)
             ++j;
 
-        c1 = is_letter (*(index1.ending-i));
-        c2 = is_letter (*(index2.ending-j));
+        c1 = is_letter(*(index1.ending - i));
+        c2 = is_letter(*(index2.ending - j));
 
         if (c1 == '\0' || c2 == '\0' || c1 != c2)
             return c1 - c2;
@@ -247,22 +247,13 @@ void print(indexes* index, int string_count, FILE* fout)
     }
 }
 
-
-
-
-
-
-
-
-
-
 /*! This function spams 50 empty strings in file
 @param [in] fout - file we need to spam in.*/
 void spam(FILE* fout, int spam_size)
 {
     int i = 0;
     for (i = 0; i < spam_size; ++i)
-        fprintf(fout, " %c ", '\n');
+        fprintf (fout, " %c ", '\n');
 }
 
 
