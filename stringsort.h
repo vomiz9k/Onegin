@@ -1,8 +1,8 @@
 #ifndef STRINGSORT_H_INCLUDED
 #define STRINGSORT_H_INCLUDED
 
-int main();
 struct indexes;
+
 void print_all_to(FILE * fout, indexes* index, int string_count, char* onegin, int spam_size);
 
 void swap(void* a, void* b, int el_size);
@@ -10,6 +10,7 @@ void swap(void* a, void* b, int el_size);
 void my_qsort(void* arr, int cnt, int el_size, int (*comp)(const void* a, const void* b));
 
 int comp_strings_start(const void* str1_pointer, const void* str2_pointer);
+
 int comp_strings_end(const void* str1_pointer, const void* str2_pointer);
 
 void print(indexes* index, int string_count, FILE* fout);
